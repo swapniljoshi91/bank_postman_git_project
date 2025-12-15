@@ -65,7 +65,20 @@
 						"method": "GET",
 						"header": [],
 						"url": "https://template.postman-echo.com/api/v1/auth",
-						"description": "when we click on send button it awithour giving any auth or any thing in it.\n\nit will give apikey for ferther work"
+						"description": "when we click on send button it awithour giving any auth or any thing in it.\n\nit will give apikey for ferther work in to the body.\n\nno need to give any thing into the body."
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"id": "a628f98e-8160-41d4-a4e2-94c7d4bfde3b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "This is a post req and Generates a new account (`fromAccount`), that the funds will be transferred from, and saves the following information if the request is successful:\n\n- Account owner from the request body (saved as collection variable `e2e_user_name_from`)\n    \n- Account id from the response body (saved as collection variable `e2e_user_account_id_from`)"
 					},
 					"response": []
 				}
