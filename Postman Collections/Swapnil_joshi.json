@@ -149,7 +149,8 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"description": "It is a basic get api it only need url\n\nif we chenge the https methord it will give 404 not found error"
+						"url": "https://template.postman-echo.com",
+						"description": "It is a basic get api it only need url\n\nif we chenge the https methord it will give 404 not found error\n\nsome time we send add in body"
 					},
 					"response": []
 				}
