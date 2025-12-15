@@ -86,7 +86,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Create account",
 					"id": "a628f98e-8160-41d4-a4e2-94c7d4bfde3b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
