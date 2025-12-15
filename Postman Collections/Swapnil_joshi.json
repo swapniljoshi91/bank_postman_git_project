@@ -92,8 +92,18 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"owner\": \"testone - FromAccount\",\n    \"balance\": 500,\n    \"currency\": \"COSMIC_COINS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://template.postman-echo.com/api/v1/accounts",
 						"description": "This is a post req and Generates a new account, that the funds will be transferred from, and saves the following information if the request is successful:\n\nNot give anything in to the body and authorization a nd in to the headers\n\nit will give 403 forbiddern error Accessto the resource is prohibited\n\nwe need to give autocode apikey to add in secure section\n\n- Account owner from the request body (saved as collection variable `e2e_user_name_from`)\n    \n- Account id from the response body (saved as collection variable `e2e_user_account_id_from`)"
 					},
 					"response": []
@@ -126,6 +136,11 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "New Folder",
+			"item": [],
+			"id": "1c63625a-9b90-4586-a2f1-59cb47d757f8"
 		}
 	],
 	"auth": {
