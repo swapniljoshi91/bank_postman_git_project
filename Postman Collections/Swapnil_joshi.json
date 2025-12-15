@@ -83,7 +83,39 @@
 					"response": []
 				}
 			],
-			"id": "1586f97b-6fbd-473f-8a33-5816192dcf08"
+			"id": "1586f97b-6fbd-473f-8a33-5816192dcf08",
+			"auth": {
+				"type": "apikey",
+				"apikey": {
+					"key": "apikey"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "34aa22ba-ac58-44e9-b263-f7d14727cf12",
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "80c5d3ef-d40d-499e-8f3d-735f5072189f",
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		}
 	]
 }
