@@ -1,8 +1,27 @@
 {
 	"info": {
 		"_postman_id": "3a179e51-988c-4c11-8020-3f2a371c8b32",
-		"name": "Valid",
+		"name": "Test_basic_api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
-	"item": []
+	"item": [
+		{
+			"name": "Valid_API",
+			"item": [
+				{
+					"name": "New Request",
+					"id": "d4c05443-9601-420c-ae16-8d1b6a19113a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"id": "1586f97b-6fbd-473f-8a33-5816192dcf08"
+		}
+	]
 }
