@@ -78,7 +78,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"description": "This is a post req and Generates a new account (`fromAccount`), that the funds will be transferred from, and saves the following information if the request is successful:\n\n- Account owner from the request body (saved as collection variable `e2e_user_name_from`)\n    \n- Account id from the response body (saved as collection variable `e2e_user_account_id_from`)"
+						"description": "This is a post req and Generates a new account, that the funds will be transferred from, and saves the following information if the request is successful:\n\nNot give anything in to the body and authorization a nd in to the headers\n\n- Account owner from the request body (saved as collection variable `e2e_user_name_from`)\n    \n- Account id from the response body (saved as collection variable `e2e_user_account_id_from`)"
 					},
 					"response": []
 				}
