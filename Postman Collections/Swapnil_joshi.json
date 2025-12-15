@@ -138,8 +138,22 @@
 			]
 		},
 		{
-			"name": "New Folder",
-			"item": [],
+			"name": "Get_Basic",
+			"item": [
+				{
+					"name": "Basic_get_api",
+					"id": "7870ba4f-91df-4583-b896-4001b3e6767b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "It is a basic get api it only need url\n\nif we chenge the https methord it will give 404 not found error"
+					},
+					"response": []
+				}
+			],
 			"id": "1c63625a-9b90-4586-a2f1-59cb47d757f8"
 		}
 	],
