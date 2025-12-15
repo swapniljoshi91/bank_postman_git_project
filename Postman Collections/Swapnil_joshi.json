@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "3a179e51-988c-4c11-8020-3f2a371c8b32",
 		"name": "Test_basic_api",
+		"description": "In this API testing project we just learn about how API works\n\nand from next collection we start learn about variable and environment and all basic things.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -9,7 +10,7 @@
 			"name": "Valid_API",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "step1",
 					"id": "d4c05443-9601-420c-ae16-8d1b6a19113a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
