@@ -40,7 +40,23 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d51002cd-eaea-4dd5-95d2-a85b177b2b75",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"id": "ffdcc41e-e1f8-4735-ac69-ef46170dd0d5",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -48,7 +64,8 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"description": "when we click on send button it awithour giving any auth or any thing in it."
+						"url": "https://template.postman-echo.com/api/v1/auth",
+						"description": "when we click on send button it awithour giving any auth or any thing in it.\n\nit will give apikey for ferther work"
 					},
 					"response": []
 				}
