@@ -138,7 +138,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "05172a1b-47bd-432f-8ef0-7319934f4ce7",
+				"id": "1d8fdb97-ac99-4842-8dee-7e9ad4085ff8",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -150,7 +150,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "f9bac9e0-75cb-4d47-84dc-e6d407ad0201",
+				"id": "10f2cd9a-a047-44d6-a5db-746e56ea063d",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -163,7 +163,7 @@
 	"variable": [
 		{
 			"key": "apiKey",
-			"value": ""
+			"value": "response.apiKey"
 		}
 	]
 }
