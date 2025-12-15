@@ -11,13 +11,44 @@
 			"item": [
 				{
 					"name": "step1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1d56a3d-3988-4d79-b5a8-af648ffba755",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"id": "d4c05443-9601-420c-ae16-8d1b6a19113a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": "https://template.postman-echo.com",
+						"description": "we send get req to check it is ok or giveing 200 or not"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"id": "ffdcc41e-e1f8-4735-ac69-ef46170dd0d5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "when we click on send button it awithour giving any auth or any thing in it."
 					},
 					"response": []
 				}
