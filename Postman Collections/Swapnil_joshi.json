@@ -47,9 +47,25 @@
 							"script": {
 								"id": "d51002cd-eaea-4dd5-95d2-a85b177b2b75",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
+									"let response = pm.response.json();",
+									"",
+									"pm.test(\"Should return a object\", function () {",
+									"    pm.expect(response, 'The response is not an object').to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"Should contain the `apiKey` property in the response\", function () {",
+									"    pm.expect(response, 'The response does not contain the property').to.haveOwnProperty('apiKey');",
+									"});",
+									"",
+									"pm.test(\"Should return a string for the `apiKey` property\", function () {",
+									"    pm.expect(response.apiKey, 'The property is not a string').to.be.a('string');",
+									"});",
+									"",
+									"// Only set the variable if the response is successful ",
+									"if (pm.response.code === 200) {",
+									"    pm.collectionVariables.set('apiKey', response.apiKey);",
+									"}",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {},
@@ -122,7 +138,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "5b411918-b0e5-4d6f-9df4-ae1d32961421",
+				"id": "05172a1b-47bd-432f-8ef0-7319934f4ce7",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -134,7 +150,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "acabdc9c-4998-4c61-b8f9-3495bf3edff6",
+				"id": "f9bac9e0-75cb-4d47-84dc-e6d407ad0201",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -147,8 +163,7 @@
 	"variable": [
 		{
 			"key": "apiKey",
-			"value": "",
-			"type": "default"
+			"value": ""
 		}
 	]
 }
