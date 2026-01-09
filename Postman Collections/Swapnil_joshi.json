@@ -1,21 +1,404 @@
 {
 	"info": {
-		"_postman_id": "3a179e51-988c-4c11-8020-3f2a371c8b32",
-		"name": "Test_basic_api",
-		"description": "In this API testing project we just learn about how API works\n\nand from next collection we start learn about variable and environment and all basic things.",
+		"_postman_id": "4a973a64-644b-4b80-a2de-5b170ae20f1e",
+		"name": "This collection is for Automation testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Valid_API",
+			"name": "Positive_AT",
 			"item": [
 				{
-					"name": "step1",
+					"name": "Status of book API",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "b1d56a3d-3988-4d79-b5a8-af648ffba755",
+								"id": "fa76c086-985e-4d59-be11-1cfdfa3b1bf7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const response = pm.response.json();",
+									"console.log(response)",
+									"console.log(response.status)",
+									"console.log(response['status'])",
+									"",
+									"pm.test(\"Status code should be OK\", () => {",
+									"    pm.expect(response['status']).to.eql(\"OK\");",
+									"",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "59d1c3b1-7574-42ce-8092-3f42bceac095",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseURL}}/status"
+					},
+					"response": []
+				},
+				{
+					"name": "List of all books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "89357566-97ac-47da-a38c-07d087423ee1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const response = pm.response.json();",
+									"console.log(\"Full Response:\", response);",
+									"",
+									"// 1️⃣ Extract all types from response",
+									"const types = response.map(book => book.type);",
+									"console.log(\"All Types:\", types);",
+									"",
+									"// 2️⃣ Pick random type",
+									"const randomType = types[Math.floor(Math.random() * types.length)];",
+									"console.log(\"Random Type:\", randomType);",
+									"",
+									"// 3️⃣ Store variable",
+									"pm.collectionVariables.set(\"randomType\", randomType);",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "2aedd90a-906c-4440-b007-fbe6a498878a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseURL}}/books"
+					},
+					"response": []
+				},
+				{
+					"name": "Find my book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eb1fc9bb-d1bc-41ca-bd15-4ec17bbe5313",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const response = pm.response.json();",
+									"console.log(\"All Books:\", response);",
+									"",
+									"// 1️⃣ Get all book names",
+									"const bookNames = response.map(book => book.name);",
+									"console.log(\"All Book Names:\", bookNames);",
+									"",
+									"// 2️⃣ Pick random book name",
+									"const randomBookName = bookNames[Math.floor(Math.random() * bookNames.length)];",
+									"console.log(\"Random Book Name:\", randomBookName);",
+									"",
+									"// 3️⃣ Find book object by random name",
+									"const selectedBook = response.find(book => book.name === randomBookName);",
+									"console.log(\"Selected Book:\", selectedBook);",
+									"",
+									"// 4️⃣ Check availability",
+									"if (selectedBook && selectedBook.available === true) {",
+									"    console.log(\"Book is available ✅\");",
+									"",
+									"   // pm.environment.set(\"randomBookName\", selectedBook.name);",
+									"    pm.collectionVariables.set(\"randomBookId\", selectedBook.id);",
+									"   // pm.environment.set(\"randomBookType\", selectedBook.type);",
+									"} else {",
+									"    console.log(\"Book is NOT available ❌\");",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "f1b2385e-3029-498a-a419-e838a760b73e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/books?type={{randomType}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "{{randomType}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e8804f5-cffa-4b2c-9ab0-b4ab29110cda",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Is in Stork  \", () => {",
+									"    pm.expect(response['current-stock']).to.be.above(0);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "608cf7dd-93ad-4aee-adf8-ed04f949a482",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/books/:bookID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"books",
+								":bookID"
+							],
+							"variable": [
+								{
+									"key": "bookID",
+									"value": "{{randomBookId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Authentication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "615dd5cb-bd9f-482f-9a86-6aead45da355",
+								"exec": [
+									"let tokenStore = pm.collectionVariables.get(\"tokenStore\");",
+									"tokenStore = tokenStore ? JSON.parse(tokenStore) : {};",
+									"",
+									"const email = pm.iterationData.get(\"clientEmail\");",
+									"const response = pm.response.json();",
+									"",
+									"// 🔹 CASE 1: Client already registered",
+									"if (pm.response.code === 409) {",
+									"",
+									"    pm.test(\"Client already registered - Status 409\", function () {",
+									"        pm.response.to.have.status(409);",
+									"    });",
+									"",
+									"    if (tokenStore[email]) {",
+									"        pm.collectionVariables.set(\"Mytoken\", tokenStore[email].token);",
+									"        console.log(\"Using existing token for:\", email);",
+									"    } else {",
+									"        console.warn(\"No token found for already registered client\");",
+									"    }",
+									"",
+									"// 🔹 CASE 2: New client registered",
+									"} else if (pm.response.code === 201 || pm.response.code === 200) {",
+									"",
+									"    pm.test(\"New client registered - Status 201\", function () {",
+									"        pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"    });",
+									"",
+									"    tokenStore[email] = {",
+									"        token: response.accessToken,",
+									"        clientEmail: email,",
+									"        createdAt: new Date().toISOString()",
+									"    };",
+									"",
+									"    pm.collectionVariables.set(\"tokenStore\", JSON.stringify(tokenStore));",
+									"    pm.collectionVariables.set(\"Mytoken\", response.accessToken);",
+									"",
+									"    console.log(\"New token stored for:\", email);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "8c860c4d-4665-4342-a33c-9e7dd55ced31",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"clientName\": \"{{clientName}}\",\n   \"clientEmail\": \"{{clientEmail}}\"\n}\n\n// {\n//    \"clientName\": \"Postman\",\n//    \"clientEmail\": \"valentin@example.com\"\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/api-clients/"
+					},
+					"response": []
+				},
+				{
+					"name": "Submit an order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "36e355fb-3b76-498d-8a91-8b76c3165b03",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"const response = pm.response.json();",
+									"",
+									"console.log('Order ID', response)"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "7ce33dbc-c69d-4d6a-a647-56b0a179f3a0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Mytoken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bookId\": {{randomBookId}},\n  \"customerName\": \"mimi\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all My orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "19ce6f58-3054-4fb8-abc9-3ea6a586ec36",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const response = pm.response.json();",
+									"",
+									"console.log('Get all order list: ', response);",
+									"const getmyorderlist = response.map(orderlist => orderlist.id);",
+									"console.log('listoforderIDs: ', getmyorderlist);",
+									"",
+									"const randumorderid = getmyorderlist[Math.floor(Math.random()* getmyorderlist.length)];",
+									"console.log(\" randum order id: \", randumorderid);",
+									"",
+									"",
+									"pm.collectionVariables.set(\"orderid\", randumorderid);",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "19442f39-d7e2-4c1f-8762-0f08726c145d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Mytoken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseURL}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Get an order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b43a0eea-d8ee-4ceb-841c-872dddad6cff",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -27,44 +410,109 @@
 							}
 						}
 					],
-					"id": "d4c05443-9601-420c-ae16-8d1b6a19113a",
+					"id": "1a5b8358-8123-45f6-91b0-28044a244378",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Mytoken}}"
+							}
+						},
 						"method": "GET",
 						"header": [],
-						"url": "https://template.postman-echo.com",
-						"description": "we send get req to check it is ok or giveing 200 or not"
+						"url": {
+							"raw": "{{baseURL}}/orders/:orderID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"orders",
+								":orderID"
+							],
+							"variable": [
+								{
+									"key": "orderID",
+									"value": "{{orderid}}"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "auth",
+					"name": "Update an order",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "d51002cd-eaea-4dd5-95d2-a85b177b2b75",
+								"id": "30bdd30f-2fdb-40c2-a16d-3885de828ca3",
 								"exec": [
-									"let response = pm.response.json();",
-									"",
-									"pm.test(\"Should return a object\", function () {",
-									"    pm.expect(response, 'The response is not an object').to.be.an('object');",
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "e1741bf0-3170-49a6-9d1c-5233249e7dfb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Mytoken}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"customerName\": \"{{customerName}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/orders/:orderID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"orders",
+								":orderID"
+							],
+							"variable": [
+								{
+									"key": "orderID",
+									"value": "{{orderid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63d5d212-a1e1-4e2c-96a0-8f47af7e81bc",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
 									"});",
 									"",
-									"pm.test(\"Should contain the `apiKey` property in the response\", function () {",
-									"    pm.expect(response, 'The response does not contain the property').to.haveOwnProperty('apiKey');",
-									"});",
-									"",
-									"pm.test(\"Should return a string for the `apiKey` property\", function () {",
-									"    pm.expect(response.apiKey, 'The property is not a string').to.be.a('string');",
-									"});",
-									"",
-									"// Only set the variable if the response is successful ",
-									"if (pm.response.code === 200) {",
-									"    pm.collectionVariables.set('apiKey', response.apiKey);",
-									"}",
 									""
 								],
 								"type": "text/javascript",
@@ -73,48 +521,46 @@
 							}
 						}
 					],
-					"id": "ffdcc41e-e1f8-4735-ac69-ef46170dd0d5",
+					"id": "153de1c0-ff12-42fe-9966-6db98199bb11",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "https://template.postman-echo.com/api/v1/auth",
-						"description": "when we click on send button it awithour giving any auth or any thing in it.\n\nit will give apikey for ferther work in to the body.\n\nno need to give any thing into the body."
-					},
-					"response": []
-				},
-				{
-					"name": "Create account",
-					"id": "a628f98e-8160-41d4-a4e2-94c7d4bfde3b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"owner\": \"testone - FromAccount\",\n    \"balance\": 500,\n    \"currency\": \"COSMIC_COINS\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Mytoken}}"
 							}
 						},
-						"url": "https://template.postman-echo.com/api/v1/accounts",
-						"description": "This is a post req and Generates a new account, that the funds will be transferred from, and saves the following information if the request is successful:\n\nNot give anything in to the body and authorization a nd in to the headers\n\nit will give 403 forbiddern error Accessto the resource is prohibited\n\nwe need to give autocode apikey to add in secure section\n\n- Account owner from the request body (saved as collection variable `e2e_user_name_from`)\n    \n- Account id from the response body (saved as collection variable `e2e_user_account_id_from`)"
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/orders/:orderID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"orders",
+								":orderID"
+							],
+							"variable": [
+								{
+									"key": "orderID",
+									"value": "{{orderid}}"
+								}
+							]
+						}
 					},
 					"response": []
 				}
 			],
-			"id": "1586f97b-6fbd-473f-8a33-5816192dcf08",
+			"id": "3a8751fe-9df3-482c-9c45-319ac127cfea",
+			"description": "This is a valid automation testing in it we your\n\n\" id\": 1, \" Autontication\": \"present\",\n\n\"available\": true,",
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "602bfdeb-3234-42d4-a9cb-79d7c593abcc",
+						"id": "11d56069-a0c2-4778-863a-985501011c8b",
 						"type": "text/javascript",
 						"packages": {},
 						"requests": {},
@@ -126,7 +572,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1b5fefb7-83a5-4887-b26b-ddbafc1bd279",
+						"id": "6a2538ed-a7f6-4cd1-b303-beb17682e872",
 						"type": "text/javascript",
 						"packages": {},
 						"requests": {},
@@ -136,40 +582,13 @@
 					}
 				}
 			]
-		},
-		{
-			"name": "Get_Basic",
-			"item": [
-				{
-					"name": "Basic_get_api",
-					"id": "7870ba4f-91df-4583-b896-4001b3e6767b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "https://template.postman-echo.com",
-						"description": "It is a basic get api it only need url\n\nif we chenge the https methord it will give 404 not found error\n\nsome time we send add in body"
-					},
-					"response": []
-				}
-			],
-			"id": "1c63625a-9b90-4586-a2f1-59cb47d757f8"
 		}
 	],
-	"auth": {
-		"type": "apikey",
-		"apikey": {
-			"value": "{{apiKey}}",
-			"key": "api-key"
-		}
-	},
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "4cb713c0-7e53-427b-a3d3-9509b46c0d94",
+				"id": "2555508f-3933-404f-aebb-ebcac0139b64",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -181,7 +600,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "023069fe-11a5-4a4b-a1e9-3254be495691",
+				"id": "26374ef0-44ad-4dea-a098-fc95892179d9",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -193,8 +612,28 @@
 	],
 	"variable": [
 		{
-			"key": "apiKey",
-			"value": "response.apiKey"
+			"key": "Mytoken",
+			"value": ""
+		},
+		{
+			"key": "baseURL",
+			"value": ""
+		},
+		{
+			"key": "randomType",
+			"value": ""
+		},
+		{
+			"key": "randomBookId",
+			"value": ""
+		},
+		{
+			"key": "orderid",
+			"value": ""
+		},
+		{
+			"key": "tokenStore",
+			"value": ""
 		}
 	]
 }
